@@ -10,6 +10,8 @@
 
 Dhwani helps citizens navigate 2000+ Indian government welfare schemes through natural Indic voice conversations — powered entirely by Indian AI models, running fully offline.
 
+**Live Demo:** [https://saanvirajput.github.io/Dhwani/](https://saanvirajput.github.io/Dhwani/)
+
 ---
 
 ## Table of Contents
