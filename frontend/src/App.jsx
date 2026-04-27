@@ -77,6 +77,8 @@ export default function App() {
             })
           } else if (event.type === 'audio') {
             // Progressive audio — each sentence arrives as it's synthesized
+            const blob = new Blob([Uint8Array.from(atob(event.audio_base64), c => c.charCodeAt(0))], { type: 'audio/mp3' })
+            const url = URL.createObjectURL(blob)
             setResponse(prev => {
               const chunks = [...(prev.audioChunks || [])]
               chunks[event.index] = event.audio_base64

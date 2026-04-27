@@ -61,4 +61,4 @@ EI_TTS_ENABLED = bool(EI_TTS_URL and (EI_TTS_TOKEN or (EI_KEYCLOAK_URL and EI_CL
 # --- Server ---
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", 8000))
-CORS_ORIGINS = ["http://localhost:5173", "http://localhost:3000"]
+CORS_ORIGINS = ["*"]

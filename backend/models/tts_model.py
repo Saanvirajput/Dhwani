@@ -391,16 +391,24 @@ def load_tts() -> None:
 
 
 def synth_sentence(text: str, language: str = "hi") -> Optional[str]:
-    """Synthesize a single sentence — returns base64 WAV or None.
-
-    Used by /ask/speak for per-sentence TTS. Unlike text_to_audio_base64,
-    this does NOT split into sub-sentences or concatenate.
-    """
+    """Synthesize a single sentence — returns base64 WAV/MP3 or None."""
     if EI_TTS_ENABLED:
         return _ei_synth_one(text)
     description = _TTS_DESCRIPTIONS.get(language, _TTS_DESCRIPTIONS["hi"])
     if _check_local_server():
         return _local_text_to_audio_base64(text, description)
+    
+    # PREMIUM FALLBACK: Use gTTS if no GPU backend is available
+    try:
+        from gtts import gTTS
+        import io
+        import base64
+        tts = gTTS(text=text, lang=language)
+        fp = io.BytesIO()
+        tts.write_to_fp(fp)
+        return base64.b64encode(fp.getvalue()).decode("utf-8")
+    except Exception as e:
+        logger.warning("[TTS] gTTS fallback failed: %s", e)
     return None
 
 

@@ -22,33 +22,52 @@ def load_model():
 
 
 def generate(prompt: str) -> str:
-    """Non-streaming: return full response text."""
+    """Non-streaming: return full response text. Fallback to rule-based mock if server offline."""
     if _client is None:
         load_model()
-    response = _client.chat.completions.create(
-        model=PARAM_MODEL_ID,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=MAX_NEW_TOKENS,
-        temperature=TEMPERATURE,
-    )
-    return response.choices[0].message.content.strip()
+    try:
+        response = _client.chat.completions.create(
+            model=PARAM_MODEL_ID,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=MAX_NEW_TOKENS,
+            temperature=TEMPERATURE,
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        print(f"[Param-1] Falling back to rule-based response due to: {e}")
+        # Extract scheme names from prompt for the mock answer
+        import re
+        schemes = re.findall(r"--- Scheme \d+: (.*?) ---", prompt)
+        if not schemes:
+            return "नमस्ते! मैं आपकी कैसे सहायता कर सकता हूँ? कृपया किसी विशिष्ट योजना के बारे में पूछें।"
+        
+        schemes_str = " और ".join(schemes[:2])
+        if "మీరు" in prompt: # Telugu detection
+            return f"క్షమించండి, ప్రస్తుతం నా సర్వర్ ఆఫ్‌లైన్‌లో ఉంది. అయితే, నేను {schemes_str} గురించి సమాచారాన్ని కనుగొన్నాను. మీరు వీటి గురించి మరింత తెలుసుకోవాలనుకుంటే దయచేసి వెబ్‌సైట్‌ను తనిఖీ చేయండి."
+        return f"नमस्ते! वर्तमान में मेरा एआई सर्वर ऑफलाइन है। हालांकि, मैंने आपके लिए {schemes_str} की जानकारी खोजी है। आप इन योजनाओं के बारे में और अधिक जानकारी के लिए आधिकारिक वेबसाइट देख सकते हैं।"
 
 
 def stream_generate(prompt: str) -> Iterator[str]:
-    """Streaming: yield text chunks as they arrive from the param1 server."""
+    """Streaming: yield text chunks. Fallback to rule-based mock if server offline."""
     if _client is None:
         load_model()
-    with _client.chat.completions.create(
-        model=PARAM_MODEL_ID,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=MAX_NEW_TOKENS,
-        temperature=TEMPERATURE,
-        stream=True,
-    ) as stream:
-        for chunk in stream:
-            delta = chunk.choices[0].delta.content
-            if delta:
-                yield delta
+    try:
+        with _client.chat.completions.create(
+            model=PARAM_MODEL_ID,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=MAX_NEW_TOKENS,
+            temperature=TEMPERATURE,
+            stream=True,
+        ) as stream:
+            for chunk in stream:
+                delta = chunk.choices[0].delta.content
+                if delta:
+                    yield delta
+    except Exception:
+        # Yield the fallback text in chunks
+        fallback = generate(prompt)
+        for word in fallback.split(" "):
+            yield word + " "
 
 
 def suspend_llm():
