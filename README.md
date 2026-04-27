@@ -43,10 +43,10 @@ Dhwani helps citizens navigate 2000+ Indian government welfare schemes through n
 
 ## Overview
 
-Citizens across India often struggle to discover which government welfare schemes they're eligible for. Dhwani solves this by letting users **ask questions in Hindi or Telugu** and receiving **spoken answers** about relevant schemes — eligibility, benefits, application process, and required documents.
+Citizens across India often struggle to discover which government welfare schemes they're eligible for. Dhwani solves this by letting users **ask questions in Hindi** and receiving **spoken answers** about relevant schemes — eligibility, benefits, application process, and required documents.
 
 **Key highlights:**
-- Voice-in, voice-out interaction in Hindi and Telugu
+- Voice-in, voice-out interaction in Hindi
 - Retrieves from 2,000+ real schemes scraped from [myscheme.gov.in](https://www.myscheme.gov.in/)
 - Supports Enterprise Inference (EI) GPU stack for production TTS, with local MPS fallback
 - Streaming responses with sentence-by-sentence audio playback
@@ -72,7 +72,7 @@ Everything runs on Indian AI models — no OpenAI, no external APIs:
 graph TD
     subgraph "User Interface (React + Vite)"
         UI_Input["🗣️ User Input (Voice/Text)"] --> Lang_Select{"🌐 Language Toggle"}
-        Lang_Select -->|Hindi/Telugu| API_Gateway["⚡ FastAPI Backend"]
+        Lang_Select -->|Hindi| API_Gateway["⚡ FastAPI Backend"]
     end
 
     subgraph "Sovereign AI Pipeline"
@@ -272,7 +272,7 @@ dhwani/
 │       ├── main.jsx
 │       ├── index.css
 │       └── components/
-│           ├── QueryInput.jsx     # Hindi/Telugu text input with language toggle
+│           ├── QueryInput.jsx     # Hindi text input with language toggle
 │           ├── ResponsePanel.jsx  # Streaming answer + audio playback
 │           ├── SchemeCard.jsx     # Scheme result card
 │           └── ModelBadge.jsx     # Sovereign AI model attribution
@@ -319,7 +319,7 @@ dhwani/
 | `POST` | `/ask/speak` | Interleaved LLM + TTS — sentence-by-sentence audio (SSE) |
 | `POST` | `/narrate` | Text-to-speech streaming |
 | `GET` | `/schemes` | Paginated scheme listing with category filter |
-| `GET` | `/schemes/suggestions` | Auto-generated Hindi/Telugu sample queries |
+| `GET` | `/schemes/suggestions` | Auto-generated Hindi sample queries |
 | `GET` | `/schemes/{id}` | Single scheme detail |
 | `GET` | `/categories` | List all scheme categories |
 | `GET` | `/health` | Model load status check |
@@ -347,7 +347,7 @@ curl -X POST http://localhost:8000/ask \
 ## Usage
 
 1. **Open the app** at http://localhost:5173
-2. **Toggle language** between हिंदी (Hindi) and తెలుగు (Telugu)
+2. **Ask questions** in हिंदी (Hindi)
 3. **Type or pick a suggestion** — e.g., "महिलाओं के लिए कौन सी योजनाएं हैं?"
 4. **View the streaming response** — answer appears token-by-token
 5. **Listen** — audio plays sentence-by-sentence as each is synthesized

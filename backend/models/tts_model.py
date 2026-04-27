@@ -40,10 +40,6 @@ _TTS_DESCRIPTIONS = {
         "A calm and clear female Hindi voice with very clear audio, "
         "speaking slowly and distinctly, suitable for government information delivery."
     ),
-    "te": (
-        "A calm and clear female Telugu voice with very clear audio, "
-        "speaking slowly and distinctly, suitable for government information delivery."
-    ),
 }
 
 _MIN_FREE_RAM_GB = 5.0

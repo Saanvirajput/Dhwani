@@ -44,7 +44,6 @@ STOP_PATTERNS = [
     "[ANSWER",              # model generating fake Q&A pairs
     "\n\n\n",               # triple newline = runaway generation
     "नागरिक का प्रश्न",      # Hindi prompt template leaking
-    "పౌరుని ప్రశ్న",          # Telugu prompt template leaking
     "\n--- Scheme",         # scheme context header leaking (not bare "Scheme")
 ]
 

@@ -1,6 +1,6 @@
 # Indic Parler-TTS — CUDA GPU Deployment
 
-Deploy [ai4bharat/indic-parler-tts](https://huggingface.co/ai4bharat/indic-parler-tts) on a Kubernetes cluster with NVIDIA GPU for production-grade Hindi/Telugu text-to-speech.
+Deploy [ai4bharat/indic-parler-tts](https://huggingface.co/ai4bharat/indic-parler-tts) on a Kubernetes cluster with NVIDIA GPU for production-grade Hindi text-to-speech.
 
 ## What's Inside
 
@@ -117,7 +117,7 @@ curl -X POST https://api.example.com/v1/tts \
 }
 ```
 
-- `text` (required): Hindi/Telugu text. Automatically normalized (numbers→words, ₹→rupees, English→Hindi).
+- `text` (required): Hindi text. Automatically normalized (numbers→words, ₹→rupees, English→Hindi).
 - `batch` (optional, default `false`): When `true`, server splits text on sentence boundaries (`।.!?`), synthesizes each sentence, and returns a single concatenated WAV.
 
 ### Response Schema

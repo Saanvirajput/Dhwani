@@ -111,9 +111,7 @@ export default function App() {
     } catch (e) {
       console.warn('Backend offline, entering Demo Mode...')
       // PREMIUM PORTFOLIO FALLBACK: Provide a high-quality demo response
-      const demoResponse = language === 'hi' 
-        ? "नमस्ते! मैं ध्वनि हूँ। वर्तमान में मेरा बैकएंड सर्वर ऑफलाइन है, लेकिन मैं आपको यह दिखा सकता हूँ कि मैं कैसे काम करता हूँ। मैं उत्तर प्रदेश की 'कन्या सुमंगला योजना' और 'वृद्धावस्था पेंशन योजना' जैसी 2000 से अधिक सरकारी योजनाओं में आपकी सहायता कर सकता हूँ।"
-        : "నమస్కారం! నేను ధ్వనిని. ప్రస్తుతం నా బ్యాకెండ్ సర్వర్ ఆఫ్‌లైన్‌లో ఉంది, కానీ నేను ఎలా పని చేస్తానో మీకు చూపించగలను. నేను ఆంధ్రప్రదేశ్ మరియు తెలంగాణలోని 2000 పైగా ప్రభుత్వ పథకాలలో మీకు సహాయం చేయగలను."
+      const demoResponse = "नमस्ते! मैं ध्वनि हूँ। वर्तमान में मेरा बैकएंड सर्वर ऑफलाइन है, लेकिन मैं आपको यह दिखा सकता हूँ कि मैं कैसे काम करता हूँ। मैं उत्तर प्रदेश की 'कन्या सुमंगला योजना' और 'वृद्धावस्था पेंशन योजना' जैसी 2000 से अधिक सरकारी योजनाओं में आपकी सहायता कर सकता हूँ।"
       
       let currentText = ""
       const tokens = demoResponse.split(" ")
@@ -126,8 +124,8 @@ export default function App() {
             text: currentText,
             streaming: i < tokens.length - 1,
             schemes: [
-              { name: language === 'hi' ? "कन्या सुमंगला योजना" : "కన్యా సుమంగళ పథకం", category: "Welfare", state: "UP" },
-              { name: language === 'hi' ? "आयुष्मान भारत" : "ఆయుష్మాన్ భారత్", category: "Health", state: "National" }
+              { name: "कन्या सुमंगला योजना", category: "Welfare", state: "UP" },
+              { name: "आयुष्मान भारत", category: "Health", state: "National" }
             ],
             narrateState: 'idle'
           }))
@@ -216,14 +214,14 @@ export default function App() {
           <div className="glass-card rounded-2xl p-6">
             <p className="text-slate-400 text-sm mb-4 flex items-center gap-2">
               <span className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span>
-              {language === 'te' ? 'పథకం గురించి అడగండి:' : 'किसी योजना के बारे में पूछें:'}
+              किसी योजना के बारे में पूछें:
             </p>
             <div className="relative mb-4">
               <input
                 type="text"
                 value={suggFilter}
                 onChange={e => setSuggFilter(e.target.value)}
-                placeholder={language === 'te' ? 'పథకం వెతకండి...' : 'योजना खोजें / Search schemes...'}
+                placeholder="योजना खोजें / Search schemes..."
                 className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all"
               />
             </div>
@@ -244,7 +242,7 @@ export default function App() {
               ))}
               {filtered.length === 0 && (
                 <div className="px-5 py-4 text-slate-500 text-sm italic">
-                  {language === 'te' ? 'ఫలితాలు లేవు' : 'कोई परिणाम नहीं'}
+                  कोई परिणाम नहीं
                 </div>
               )}
             </div>

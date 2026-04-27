@@ -114,7 +114,7 @@ Use the following branch prefixes:
 
 | Prefix | Purpose | Example |
 |--------|---------|---------|
-| `feat/` | New feature | `feat/telugu-stt-support` |
+| `feat/` | New feature | `feat/hindi-stt-support` |
 | `fix/` | Bug fix | `fix/tts-memory-leak` |
 | `docs/` | Documentation | `docs/update-api-reference` |
 | `refactor/` | Code refactoring | `refactor/retriever-async` |
@@ -138,7 +138,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 **Examples:**
 ```
-feat(tts): add Telugu voice support
+feat(tts): add Hindi voice support
 fix(retrieval): handle empty embedding results gracefully
 docs(readme): add Docker deployment instructions
 chore(deps): bump transformers to 4.42.0

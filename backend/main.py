@@ -91,7 +91,7 @@ _STOP_PATS = [
     "[ASSISTANT", "[USER", "[SYSTEM",
     "[QUESTION", "[ANSWER",
     "\n\n\n",
-    "नागरिक का प्रश्न", "పౌరుని ప్రశ్న",
+    "नागरिक का प्रश्न",
     "\n--- Scheme",
 ]
 
@@ -212,20 +212,13 @@ def scheme_suggestions(count: int = 30, language: str = "hi"):
     if not schemes:
         return {"suggestions": []}
 
-    templates_hi = [
+    templates = [
         "{name} योजना क्या है?",
         "{name} के लिए कौन पात्र है?",
         "{name} में क्या लाभ मिलते हैं?",
         "{name} के लिए आवेदन कैसे करें?",
         "{name} में कौन से दस्तावेज़ चाहिए?",
     ]
-    templates_te = [
-        "{name} పథకం ఏమిటి?",
-        "{name} కి అర్హత ఎవరికి ఉంది?",
-        "{name} లో ఏమేమి లాభాలు ఉన్నాయి?",
-        "{name} కోసం ఎలా దరఖాస్తు చేయాలి?",
-    ]
-    templates = templates_te if language == "te" else templates_hi
 
     sample_size = min(count, len(schemes))
     sampled = random.sample(schemes, sample_size)
