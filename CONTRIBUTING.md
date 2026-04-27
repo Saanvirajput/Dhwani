@@ -1,6 +1,6 @@
-# Contributing to Apex Vaani
+# Contributing to Apex Dhwani
 
-Thank you for your interest in contributing to Apex Vaani! This guide will help you get started.
+Thank you for your interest in contributing to Apex Dhwani! This guide will help you get started.
 
 ## Quick Setup Checklist
 
@@ -50,7 +50,7 @@ Thank you for your interest in contributing to Apex Vaani! This guide will help 
 
 1. Open an issue with the **Feature Request** template
 2. Describe the use case and expected behavior
-3. Explain why this feature would benefit Apex Vaani users
+3. Explain why this feature would benefit Apex Dhwani users
 
 ---
 

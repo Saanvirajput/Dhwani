@@ -1,4 +1,4 @@
-"""Apex Vaani — FastAPI backend."""
+"""Apex Dhwani — FastAPI backend."""
 import json
 import queue
 import re
@@ -40,7 +40,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Apex Vaani API",
+    title="Apex Dhwani API",
     description="Premium Sovereign AI-powered Hindi voice assistant for Indian government schemes",
     version="1.0.0",
     lifespan=lifespan,

@@ -66,7 +66,7 @@ def test_tts():
     desc_tok = AutoTokenizer.from_pretrained(model_id)
 
     description = "A calm Hindi female voice speaking clearly."
-    text = "नमस्ते, मैं एपिक्स वाणी हूँ।"
+    text = "नमस्ते, मैं एपिक्स ध्वनि हूँ।"
 
     desc_ids = desc_tok(description, return_tensors="pt").input_ids.to(device)
     prompt_ids = tokenizer(text, return_tensors="pt").input_ids.to(device)

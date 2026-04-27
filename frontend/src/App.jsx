@@ -174,7 +174,7 @@ export default function App() {
       <div className="tricolor-bar" />
       <header className="bg-slate-900/50 backdrop-blur-md border-b border-slate-700/50 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
         <div>
-          <h1 className="text-2xl font-bold text-white hindi tracking-tight">एपिक्स वाणी <span className="text-indigo-400 font-sans ml-2">Apex Vaani</span></h1>
+          <h1 className="text-2xl font-bold text-white hindi tracking-tight">एपिक्स ध्वनि <span className="text-indigo-400 font-sans ml-2">Apex Dhwani</span></h1>
           <p className="text-slate-400 text-xs uppercase tracking-widest mt-0.5">Intelligent Government Scheme Navigator</p>
         </div>
         <ModelBadge />

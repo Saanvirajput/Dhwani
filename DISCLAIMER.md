@@ -1,6 +1,6 @@
 # Disclaimer
 
-Apex Vaani (एपिक्स वाणी) is provided **for educational and demonstration purposes only**.
+Apex Dhwani (एपिक्स ध्वनि) is provided **for educational and demonstration purposes only**.
 
 - This is **not** a production-ready or regulatory-compliant system.
 - This is **not** professional legal, financial, or policy advice.

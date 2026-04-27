@@ -1,4 +1,4 @@
-"""Central configuration for Apex Vaani backend."""
+"""Central configuration for Apex Dhwani backend."""
 import os
 from pathlib import Path
 

@@ -2,7 +2,7 @@
 
 ## Notice
 
-Apex Vaani is an **educational and demonstration project**. It is not designed or audited for production-grade security. Use at your own discretion.
+Apex Dhwani is an **educational and demonstration project**. It is not designed or audited for production-grade security. Use at your own discretion.
 
 ---
 
@@ -20,7 +20,7 @@ Apex Vaani is an **educational and demonstration project**. It is not designed o
 
 ## User Responsibilities
 
-If you deploy Apex Vaani beyond local development, you are responsible for:
+If you deploy Apex Dhwani beyond local development, you are responsible for:
 
 - **Authentication & authorization** — the API has no built-in auth
 - **Network controls** — firewall rules, VPN, or reverse proxy with TLS
@@ -39,4 +39,4 @@ If you discover a security vulnerability, please report it responsibly:
 3. Include steps to reproduce and potential impact
 4. We will acknowledge receipt within 48 hours
 
-Thank you for helping keep Apex Vaani safe.
+Thank you for helping keep Apex Dhwani safe.

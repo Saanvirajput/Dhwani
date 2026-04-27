@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues and solutions for Apex Vaani.
+Common issues and solutions for Apex Dhwani.
 
 ## Table of Contents
 

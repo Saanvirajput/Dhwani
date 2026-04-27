@@ -1,6 +1,6 @@
 # Terms and Conditions
 
-By using Apex Vaani (एपिक्स वाणी), you agree to the following:
+By using Apex Dhwani (एपिक्स ध्वनि), you agree to the following:
 
 1. **Educational Use** — This project is intended for educational and demonstration purposes. It is not designed for production deployment without additional security review, testing, and compliance measures.
 
