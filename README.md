@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="docs/assets/ApexDhwani-Header.png" width="800" alt="Apex Dhwani">
+  <img src="docs/assets/Dhwani-Header.png" width="800" alt="Dhwani">
 </p>
 
-# Apex Dhwani (एपिक्स ध्वनि)
+# Dhwani (ध्वनि)
 
 **Premium Sovereign AI-Powered Hindi Voice Assistant for Indian Government Welfare Schemes**
 
-Apex Dhwani helps citizens navigate 2000+ Indian government welfare schemes through natural Indic voice conversations — powered entirely by Indian AI models, running fully offline.
+Dhwani helps citizens navigate 2000+ Indian government welfare schemes through natural Indic voice conversations — powered entirely by Indian AI models, running fully offline.
 
 ---
 
 ## Table of Contents
 
-- [Apex Dhwani (एपिक्स ध्वनि)](#apex-dhwani-एपिक्स-वाणी)
+- [Dhwani (ध्वनि)](#dhwani-एपिक्स-वाणी)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Sovereign AI Stack](#sovereign-ai-stack)
@@ -41,7 +41,7 @@ Apex Dhwani helps citizens navigate 2000+ Indian government welfare schemes thro
 
 ## Overview
 
-Citizens across India often struggle to discover which government welfare schemes they're eligible for. Apex Dhwani solves this by letting users **ask questions in Hindi or Telugu** and receiving **spoken answers** about relevant schemes — eligibility, benefits, application process, and required documents.
+Citizens across India often struggle to discover which government welfare schemes they're eligible for. Dhwani solves this by letting users **ask questions in Hindi or Telugu** and receiving **spoken answers** about relevant schemes — eligibility, benefits, application process, and required documents.
 
 **Key highlights:**
 - Voice-in, voice-out interaction in Hindi and Telugu
@@ -156,8 +156,8 @@ graph TD
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/SaanviRajput/Apex-Dhwani.git
-cd Apex-Dhwani
+git clone https://github.com/SaanviRajput/Dhwani.git
+cd Dhwani
 
 # 2. Create and activate a virtual environment
 python -m venv .venv
@@ -227,7 +227,7 @@ kubectl apply -f k8s/tts-apisix-route.yaml
 # 4. Verify (look for "READY" in logs)
 kubectl logs -f deployment/tts-deployment
 
-# 5. Point Apex Dhwani backend to it (in .env)
+# 5. Point Dhwani backend to it (in .env)
 EI_TTS_URL=http://api.example.com:32237/v1/tts
 EI_TTS_TOKEN=<your-bearer-token>
 ```
@@ -241,7 +241,7 @@ The backend's TTS router automatically prefers the EI GPU path over the local MP
 ## Project Structure
 
 ```
-apex-dhwani/
+dhwani/
 ├── backend/
 │   ├── main.py                    # FastAPI app — all endpoints
 │   ├── config.py                  # Central configuration
@@ -446,4 +446,4 @@ This project is for **educational and demonstration purposes only**. See [DISCLA
 
 ---
 
-Built with care by [Apex AI](https://github.com/SaanviRajput)
+Built with care by [Dhwani AI](https://github.com/SaanviRajput)

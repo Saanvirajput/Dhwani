@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues and solutions for Apex Dhwani.
+Common issues and solutions for Dhwani.
 
 ## Table of Contents
 

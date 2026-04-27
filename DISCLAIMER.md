@@ -1,6 +1,6 @@
 # Disclaimer
 
-Apex Dhwani (एपिक्स ध्वनि) is provided **for educational and demonstration purposes only**.
+Dhwani (ध्वनि) is provided **for educational and demonstration purposes only**.
 
 - This is **not** a production-ready or regulatory-compliant system.
 - This is **not** professional legal, financial, or policy advice.
@@ -8,6 +8,6 @@ Apex Dhwani (एपिक्स ध्वनि) is provided **for educational a
 - AI-generated responses (from Param-1) should always be verified against official sources at [myscheme.gov.in](https://www.myscheme.gov.in/).
 - **Human review is required** before acting on any information provided by this system.
 
-Apex AI assumes **no liability** for decisions made based on this tool's output.
+Dhwani AI assumes **no liability** for decisions made based on this tool's output.
 
 Users are solely responsible for verifying scheme eligibility, benefits, and application processes through official government channels.
