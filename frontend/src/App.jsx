@@ -4,6 +4,8 @@ import QueryInput from './components/QueryInput.jsx'
 import ResponsePanel from './components/ResponsePanel.jsx'
 import SchemeCard from './components/SchemeCard.jsx'
 import ModelBadge from './components/ModelBadge.jsx'
+import Hero from './components/Hero.jsx'
+import CategoryGrid from './components/CategoryGrid.jsx'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://dhwani-backend-saanvi.loca.lt'
 
@@ -192,62 +194,86 @@ export default function App() {
     : suggestions
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="tricolor-bar" />
-      <header className="bg-slate-900/50 backdrop-blur-md border-b border-slate-700/50 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
-        <div>
-          <h1 className="text-2xl font-bold text-white hindi tracking-tight">ध्वनि <span className="text-indigo-400 font-sans ml-2">Dhwani</span></h1>
-          <p className="text-slate-400 text-xs uppercase tracking-widest mt-0.5">Intelligent Government Scheme Navigator</p>
+    <div className="min-h-screen flex flex-col selection:bg-indigo-500/30">
+      <header className="bg-slate-950/70 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex items-center justify-between sticky top-0 z-[100] transition-all">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/20">
+            D
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-white hindi tracking-tight leading-none">ध्वनि <span className="text-indigo-400 font-outfit ml-1 text-xl font-medium tracking-normal">Dhwani</span></h1>
+            <p className="text-slate-500 text-[10px] uppercase tracking-[0.2em] mt-1 font-semibold">Sovereign AI Navigator</p>
+          </div>
         </div>
-        <ModelBadge />
+        <div className="flex items-center gap-4">
+          <ModelBadge />
+          <button className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-semibold hover:bg-emerald-500/20 transition-all">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+            Live Systems
+          </button>
+        </div>
       </header>
 
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-8 flex flex-col gap-8">
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-          <div className="relative">
-            <QueryInput onSubmit={handleQuery} loading={loading} language={language} onLanguageChange={handleLanguageChange} />
-          </div>
-        </div>
-
-        {!response && !loading && suggestions.length > 0 && (
-          <div className="glass-card rounded-2xl p-6">
-            <p className="text-slate-400 text-sm mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span>
-              किसी योजना के बारे में पूछें:
-            </p>
-            <div className="relative mb-4">
-              <input
-                type="text"
-                value={suggFilter}
-                onChange={e => setSuggFilter(e.target.value)}
-                placeholder="योजना खोजें / Search schemes..."
-                className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all"
-              />
-            </div>
-            <div className="max-h-80 overflow-y-auto rounded-xl border border-slate-700/50 bg-slate-900/30 divide-y divide-slate-800/50 scrollbar-thin scrollbar-thumb-slate-700">
-              {filtered.slice(0, 30).map((s, i) => (
-                <button
-                  key={i}
-                  onClick={() => handleQuery(s.query)}
-                  className="w-full text-left px-5 py-4 hover:bg-indigo-500/10 transition-all group border-l-2 border-transparent hover:border-indigo-500"
-                >
-                  <span className="hindi text-base text-slate-200 group-hover:text-white block">
-                    {s.query}
-                  </span>
-                  <span className="block text-xs text-slate-500 mt-1.5 font-medium truncate uppercase tracking-wider">
-                    {s.scheme_name}
-                  </span>
-                </button>
-              ))}
-              {filtered.length === 0 && (
-                <div className="px-5 py-4 text-slate-500 text-sm italic">
-                  कोई परिणाम नहीं
-                </div>
-              )}
-            </div>
+      <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-10 flex flex-col">
+        {!response && !loading && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <Hero />
+            <CategoryGrid onSelect={(cat) => setSuggFilter(cat)} />
           </div>
         )}
+
+        <div className={`transition-all duration-700 ease-in-out ${response || loading ? 'max-w-4xl mx-auto w-full' : 'w-full'}`}>
+          <div className="relative group mb-12">
+            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-emerald-500 to-indigo-500 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition duration-1000 animate-pulse"></div>
+            <div className="relative">
+              <QueryInput onSubmit={handleQuery} loading={loading} language={language} onLanguageChange={handleLanguageChange} />
+            </div>
+          </div>
+
+          {!response && !loading && suggestions.length > 0 && (
+            <div className="glass-card rounded-3xl p-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-slate-200 font-semibold flex items-center gap-3">
+                  <span className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span>
+                  Trending Inquiries
+                </p>
+                <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-slate-400 uppercase font-bold tracking-widest">
+                  Live Feed
+                </div>
+              </div>
+
+              <div className="relative mb-6">
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-500">
+                  🔍
+                </div>
+                <input
+                  type="text"
+                  value={suggFilter}
+                  onChange={e => setSuggFilter(e.target.value)}
+                  placeholder="Filter schemes or questions..."
+                  className="w-full bg-slate-900/40 border border-white/5 rounded-2xl pl-12 pr-4 py-4 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all hover:bg-slate-900/60"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin">
+                {filtered.slice(0, 30).map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleQuery(s.query)}
+                    className="flex flex-col text-left p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-indigo-500/10 hover:border-indigo-500/20 transition-all group"
+                  >
+                    <span className="hindi text-slate-200 group-hover:text-white transition-colors">
+                      {s.query}
+                    </span>
+                    <span className="text-[10px] text-slate-500 mt-2 font-bold uppercase tracking-wider group-hover:text-slate-400">
+                      {s.scheme_name}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
 
         {error && (
           <div className="bg-red-900/30 border border-red-700 rounded-xl p-4 text-red-300">
