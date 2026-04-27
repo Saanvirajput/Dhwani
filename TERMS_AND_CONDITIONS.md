@@ -17,5 +17,3 @@ By using Dhwani (ध्वनि), you agree to the following:
 5. **Data Accuracy** — Government scheme data is sourced from publicly available datasets. Dhwani AI does not guarantee the accuracy, completeness, or timeliness of this data.
 
 6. **No Production Deployment** — Do not deploy this system in a production environment without conducting a thorough security review, performance testing, and compliance assessment.
-
-For questions, contact **info@ApexAI.com**.
