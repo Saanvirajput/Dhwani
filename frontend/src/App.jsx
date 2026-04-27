@@ -107,9 +107,31 @@ export default function App() {
         }
       }
     } catch (e) {
-      setError(e.message)
+      console.warn('Backend offline, entering Demo Mode...')
+      // PREMIUM PORTFOLIO FALLBACK: Provide a high-quality demo response
+      const demoResponse = language === 'hi' 
+        ? "नमस्ते! मैं ध्वनि हूँ। वर्तमान में मेरा बैकएंड सर्वर ऑफलाइन है, लेकिन मैं आपको यह दिखा सकता हूँ कि मैं कैसे काम करता हूँ। मैं उत्तर प्रदेश की 'कन्या सुमंगला योजना' और 'वृद्धावस्था पेंशन योजना' जैसी 2000 से अधिक सरकारी योजनाओं में आपकी सहायता कर सकता हूँ।"
+        : "నమస్కారం! నేను ధ్వనిని. ప్రస్తుతం నా బ్యాకెండ్ సర్వర్ ఆఫ్‌లైన్‌లో ఉంది, కానీ నేను ఎలా పని చేస్తానో మీకు చూపించగలను. నేను ఆంధ్రప్రదేశ్ మరియు తెలంగాణలోని 2000 పైగా ప్రభుత్వ పథకాలలో మీకు సహాయం చేయగలను."
+      
+      let currentText = ""
+      const tokens = demoResponse.split(" ")
+      for (let i = 0; i < tokens.length; i++) {
+        await new Promise(r => setTimeout(r, 60)) // Simulate streaming
+        currentText += tokens[i] + " "
+        flushSync(() => {
+          setResponse(prev => ({
+            ...prev,
+            text: currentText,
+            streaming: i < tokens.length - 1,
+            schemes: [
+              { name: language === 'hi' ? "कन्या सुमंगला योजना" : "కన్యా సుమంగళ పథకం", category: "Welfare", state: "UP" },
+              { name: language === 'hi' ? "आयुष्मान भारत" : "ఆయుష్మాన్ భారత్", category: "Health", state: "National" }
+            ],
+            narrateState: 'idle'
+          }))
+        })
+      }
       setLoading(false)
-      setResponse(null)
     }
   }
 
