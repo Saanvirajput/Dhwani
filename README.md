@@ -66,16 +66,47 @@ Everything runs on Indian AI models — no OpenAI, no external APIs:
 
 ## How It Works
 
-```
-1. User speaks/types a query in Hindi or Telugu
-        ↓
-2. Query is embedded using all-MiniLM-L6-v2
-        ↓
-3. Cosine similarity retrieves the top-3 most relevant schemes
-        ↓
-4. Schemes are injected into Param-1's context → Hindi/Telugu answer generated
-        ↓
-5. Indic Parler-TTS speaks the answer back sentence-by-sentence
+```mermaid
+graph TD
+    subgraph "User Interface (React + Vite)"
+        UI_Input["🗣️ User Input (Voice/Text)"] --> Lang_Select{"🌐 Language Toggle"}
+        Lang_Select -->|Hindi/Telugu| API_Gateway["⚡ FastAPI Backend"]
+    end
+
+    subgraph "Sovereign AI Pipeline"
+        API_Gateway --> Embed_Gen["🔢 Embedding Engine<br/>(all-MiniLM-L6-v2)"]
+        Embed_Gen --> Vector_Search["🔍 Vector Search<br/>(Cosine Similarity)"]
+        
+        subgraph "Knowledge Base"
+            DB[(2,000+ Gov Schemes)]
+        end
+        
+        Vector_Search <--> DB
+        Vector_Search --> Context_Inj["💉 Context Injection"]
+        
+        Context_Inj --> LLM_Inference["🧠 LLM Inference<br/>(Param-1 2.9B)"]
+        
+        LLM_Inference -->|Token Stream| UI_Display["📝 Streaming Answer"]
+    end
+
+    subgraph "Audio Synthesis (TTS)"
+        LLM_Inference --> Sentence_Split["✂️ Sentence Splitter"]
+        Sentence_Split --> TTS_Router{"🔀 TTS Router"}
+        
+        TTS_Router -->|Priority| EI_GPU["🚀 Enterprise GPU Stack<br/>(CUDA + vLLM)"]
+        TTS_Router -->|Fallback| Local_MPS["💻 Local MPS Fallback<br/>(Apple Silicon)"]
+        
+        EI_GPU --> Audio_Stream["🔊 Audio Playback"]
+        Local_MPS --> Audio_Stream
+    end
+
+    UI_Display --- Audio_Stream
+    
+    style UI_Input fill:#4f46e5,color:#fff,stroke:#312e81
+    style API_Gateway fill:#06b6d4,color:#fff,stroke:#0891b2
+    style LLM_Inference fill:#6366f1,color:#fff,stroke:#4338ca
+    style DB fill:#f59e0b,color:#fff,stroke:#b45309
+    style EI_GPU fill:#10b981,color:#fff,stroke:#047857
 ```
 
 ---
